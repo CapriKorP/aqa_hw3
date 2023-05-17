@@ -40,7 +40,7 @@ class cardOrderTest {
 
     @Test
     void happyPathTest() {
-        driver.get("http://localhost:7777/"); //на локальном хосте запускать 7777
+        driver.get("http://localhost:9999/"); //на локальном хосте запускать 7777
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Иванов Иван");
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79999999999");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
@@ -57,7 +57,7 @@ class cardOrderTest {
             "*:(?:*?(*%"
     })
     void wrongNameTest(String name) {
-        driver.get("http://localhost:7777/");
+        driver.get("http://localhost:9999/");
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys(name);
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79999999999");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
@@ -75,7 +75,7 @@ class cardOrderTest {
         "++9998881234"
     })
     void wrongPhoneTest(String number) {
-        driver.get("http://localhost:7777/");
+        driver.get("http://localhost:9999/");
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Иван Иванов");
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys(number);
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
@@ -87,7 +87,7 @@ class cardOrderTest {
 
     @Test
     void emptyNameField() {
-        driver.get("http://localhost:7777");
+        driver.get("http://localhost:9999");
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("");
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79998881234");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
@@ -99,7 +99,7 @@ class cardOrderTest {
 
     @Test
     void emptyPhoneField() {
-        driver.get("http://localhost:7777");
+        driver.get("http://localhost:9999");
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Иван Иванов");
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
@@ -111,7 +111,7 @@ class cardOrderTest {
 
     @Test
     void noCheckbox() {
-        driver.get("http://localhost:7777");
+        driver.get("http://localhost:9999");
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Иван Иванов");
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79998881234");
         driver.findElement(By.tagName("button")).click();
