@@ -85,4 +85,38 @@ class cardOrderTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    void emptyNameField() {
+        driver.get("http://localhost:7777");
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79998881234");
+        driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
+        driver.findElement(By.tagName("button")).click();
+        String expected = "Поле обязательно для заполнения";
+        String actual = driver.findElement(By.cssSelector("[data-test-id='name'].input_invalid .input__sub")).getText().trim();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void emptyPhoneField() {
+        driver.get("http://localhost:7777");
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Иван Иванов");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("");
+        driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
+        driver.findElement(By.tagName("button")).click();
+        String expected = "Поле обязательно для заполнения";
+        String actual = driver.findElement(By.cssSelector("[data-test-id='phone'].input_invalid .input__sub")).getText().trim();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void noCheckbox() {
+        driver.get("http://localhost:7777");
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Иван Иванов");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79998881234");
+        driver.findElement(By.tagName("button")).click();
+        Boolean expected = true;
+        Boolean actual = driver.findElement(By.cssSelector("[data-test-id='agreement'].input_invalid")).isEnabled();
+        assertEquals(expected, actual);
+    }
 }
